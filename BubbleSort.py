@@ -9,6 +9,9 @@ size = (1600, 900)
 bg = (120, 120, 180)
 line_color = (230, 230, 230)
 
+i = 0
+j = 0
+
 root = pg.display.set_mode(size, pg.FULLSCREEN)
 pg.display.set_caption("Bubble Sort Visualization")
 
@@ -22,17 +25,29 @@ def setup():
 
 def draw():
     root.fill(bg)
-    i = 0
-    while i < size[0]:
-        pg.draw.line(root, line_color, (i, size[1]), (i, size[1]-values[i]))
-        i += 1
+
+    global i, j
+    print("i:", i, "j:", j)
+    if i < len(values):
+        if values[j] > values[j+1]:
+            values[j], values[j+1] = values[j+1], values[j]
+
+        j += 1
+
+        if j >= len(values)-i-1:
+            j = 0
+            i += 1
+        print("s", i)
+
+    for x in range(size[0]):
+        pg.draw.line(root, line_color, (x, size[1]), (x, size[1]-values[x]))
 
 
 def bubble_sort():
-    for i in range(len(values)):
-        for j in range(0, len(values)-i-1):
-            if values[j] > values[j+1]:
-                values[j], values[j+1] = values[j+1], values[j]
+    for x in range(len(values)):
+        for y in range(0, len(values)-x-1):
+            if values[y] > values[y+1]:
+                values[y], values[y+1] = values[y+1], values[y]
 
 
 clock = pg.time.Clock()
@@ -51,7 +66,7 @@ while not finished:
                 pg.quit()
                 quit()
 
-    bubble_sort()
+    # bubble_sort()
     draw()
     pg.display.update()
     clock.tick(60)
