@@ -28,6 +28,13 @@ def draw():
         i += 1
 
 
+def bubble_sort():
+    for i in range(len(values)):
+        for j in range(0, len(values)-i-1):
+            if values[j] > values[j+1]:
+                values[j], values[j+1] = values[j+1], values[j]
+
+
 clock = pg.time.Clock()
 finished = False
 
@@ -44,6 +51,7 @@ while not finished:
                 pg.quit()
                 quit()
 
+    bubble_sort()
     draw()
     pg.display.update()
     clock.tick(60)
