@@ -8,7 +8,6 @@ pg.init()
 size = (1600, 900)
 bg = (120, 120, 180)
 line_color = (230, 230, 230)
-
 i = 0
 
 root = pg.display.set_mode(size, pg.FULLSCREEN)
@@ -33,7 +32,8 @@ def draw():
         i += 1
 
     for x in range(size[0]):
-        pg.draw.line(root, line_color, (x, size[1]), (x, size[1]-values[x]))
+        pg.draw.line(root, (int((values[x]/900)*100), int((values[x]/900)*100), int((values[x]/900)*255)),
+                     (x, size[1]), (x, size[1]-values[x]))
 
 
 def bubble_sort():
@@ -58,6 +58,8 @@ while not finished:
             if event.key == pg.K_ESCAPE:
                 pg.quit()
                 quit()
+            if event.key == pg.K_SPACE:
+                bubble_sort()
 
     # bubble_sort()
     draw()
