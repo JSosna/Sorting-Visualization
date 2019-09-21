@@ -1,3 +1,5 @@
 # Sorting-Visualization
 
-![](Sorting.gif)
+<p align="center"> 
+  ![](Sorting.gif)
+</p>
