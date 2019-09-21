@@ -10,7 +10,6 @@ bg = (120, 120, 180)
 line_color = (230, 230, 230)
 
 i = 0
-j = 0
 
 root = pg.display.set_mode(size, pg.FULLSCREEN)
 pg.display.set_caption("Bubble Sort Visualization")
@@ -26,18 +25,12 @@ def setup():
 def draw():
     root.fill(bg)
 
-    global i, j
-    print("i:", i, "j:", j)
+    global i
     if i < len(values):
-        if values[j] > values[j+1]:
-            values[j], values[j+1] = values[j+1], values[j]
-
-        j += 1
-
-        if j >= len(values)-i-1:
-            j = 0
-            i += 1
-        print("s", i)
+        for j in range(len(values)-i-1):
+            if values[j] > values[j+1]:
+                values[j], values[j+1] = values[j+1], values[j]
+        i += 1
 
     for x in range(size[0]):
         pg.draw.line(root, line_color, (x, size[1]), (x, size[1]-values[x]))
